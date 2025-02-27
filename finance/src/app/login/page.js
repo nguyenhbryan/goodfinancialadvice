@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import * as React from 'react';
+import styles from "./page.module.css"
 //import { GoogleIcon, FacebookIcon } from './CustomIcons';
 
 export default function Login() {
@@ -69,119 +70,72 @@ export default function Login() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-between p-4 bg-gray-50 dark:bg-gray-900">
+    <div className="body">
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Sign in</h1>
 
-      <div className="max-w-md mx-auto w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 space-y-6">
-        {/* Logo */}
-        <div className="flex justify-center"></div>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {error && <div className={styles.errorMessage}>{error}</div>}
 
-        {/* Title */}
-        <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-200">
-          Sign in
-        </h1>
-
-        {/* Form */}
-        <form
-          className="space-y-4"
-          onSubmit={handleSubmit}>
-          {error && <div className="text-white">{error}</div>}
-          {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Email
-            </label>
+            <label htmlFor="email" className={styles.label}>Email</label>
             <input
               type="email"
               placeholder="your@email.com"
               required
               name="email"
-              className={`w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 ${emailError ? 'border-red-500' : 'border-gray-300'}`}
+              className={`${styles.input} ${emailError ? styles.inputError : ''}`}
             />
-            {emailError && (
-              <p className="text-sm text-red-500 mt-1">{emailErrorMessage}</p>
-            )}
+            {emailError && <p className={styles.errorMessage}>{emailErrorMessage}</p>}
           </div>
 
-          {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Password
-            </label>
+            <label htmlFor="password" className={styles.label}>Password</label>
             <input
               type="password"
               placeholder="••••••"
               name="password"
               required
-              className={`w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 ${passwordError ? 'border-red-500' : 'border-gray-300'}`}
+              className={`${styles.input} ${passwordError ? styles.inputError : ''}`}
             />
-            {passwordError && (
-              <p className="text-sm text-red-500 mt-1">{passwordErrorMessage}</p>
-            )}
+            {passwordError && <p className={styles.errorMessage}>{passwordErrorMessage}</p>}
           </div>
 
-          {/* Remember Me */}
-          <div className="flex items-center">
-            <input id="remember" name="remember" type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded" />
-            <label htmlFor="remember" className="ml-2 text-sm text-gray-700 dark:text-gray-300">
-              Remember me
-            </label>
+          <div className={styles.checkboxContainer}>
+            <input id="remember" name="remember" type="checkbox" className={styles.checkbox} />
+            <label htmlFor="remember" className={styles.checkboxLabel}>Remember me</label>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg"
-          >
-          Sign In
-          </button>
+          <button type="submit" className={styles.submitButton}>Sign In</button>
 
-            
-
-
-          {/* Forgot Password */}
-          <Link
-            type="button"
-            onClick={handleClickOpen}
-            className="block text-sm text-blue-600 hover:underline text-center w-full"
-            href="/"
-          >
+          <Link href="/" onClick={handleClickOpen} className={styles.linkButton}>
             Forgot your password?
           </Link>
         </form>
 
-        <div className="flex items-center justify-center">
-          <span className="text-gray-500 dark:text-gray-400 px-2">or</span>
+        <div className={styles.divider}>
+          <span className={styles.dividerText}>or</span>
         </div>
 
-        {/* Social Buttons */}
-        <div className="space-y-2">
-          <button
-            type="button"
-            className="w-full flex items-center justify-center border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 py-2 rounded-lg text-gray-700 dark:text-gray-300"
-            onClick={() => alert('Sign in with Google')}
-          >
-            
+        <div className={styles.form}>
+          <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Google')}>
             Sign in with Google
           </button>
 
-          <button
-            type="button"
-            className="w-full flex items-center justify-center border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 py-2 rounded-lg text-gray-700 dark:text-gray-300"
-            onClick={() => alert('Sign in with Facebook')}
-          >
-        
+          <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Facebook')}>
             Sign in with Facebook
           </button>
         </div>
 
-        {/* Sign Up Link */}
-        <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+        <p className={styles.textCenter}>
           Don&apos;t have an account?
-          <Link href="/register" className="text-blue-600 hover:underline pl-3">
+          <Link href="/register" className={styles.linkButton}>
             Sign up
           </Link>
         </p>
       </div>
     </section>
+    </div>
   );
 };

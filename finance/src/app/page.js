@@ -1,13 +1,22 @@
+'use client'
 import styles from "./page.module.css";
 import Cards from "./Cards.jsx";
+import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
+import { userAgent } from "next/server";
 
 export default function Home() {
+  const {data: session} = useSession();
+
   return (
     <div>
       <div className={styles.welcome_container}>
         <div className={styles.welcome_left}>
           <div>
-            Welcome User!
+            Welcome {session?.user?.name}
+          </div>
+          <div>
+            Coins: {session?.user?.coins}
           </div>
           <div>
             Wager

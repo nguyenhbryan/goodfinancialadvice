@@ -1,0 +1,197 @@
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f9fafb;
+  }
+  
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f9fafb;
+  }
+  
+  .dark .section {
+    background-color: #1a202c;
+  }
+  
+  .container {
+    max-width: 28rem;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .dark .container {
+    background-color: #2d3748;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2d3748;
+  }
+  
+  .dark .title {
+    color: #edf2f7;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: medium;
+    color: #4a5568;
+  }
+  
+  .dark .label {
+    color: #d1d5db;
+  }
+  
+  .input {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    color: #2d3748;
+  }
+  
+  .dark .input {
+    background-color: #4a5568;
+    border-color: #2d3748;
+  }
+  
+  .inputError {
+    border-color: #ef4444;
+  }
+  
+  .errorMessage {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+  }
+  
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    color: #2563eb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+  }
+  
+  .checkboxLabel {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    color: #4a5568;
+  }
+  
+  .dark .checkboxLabel {
+    color: #d1d5db;
+  }
+  
+  .submitButton {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  .submitButton:hover {
+    background-color: #1e40af;
+  }
+  
+  .linkButton {
+    display: block;
+    font-size: 0.875rem;
+    color: #2563eb;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .linkButton:hover {
+    text-decoration: underline;
+  }
+  
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dividerText {
+    font-size: 0.875rem;
+    color: #6b7280;
+    padding: 0 0.5rem;
+  }
+  
+  .dark .dividerText {
+    color: #a0aec0;
+  }
+  
+  .socialButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: #4a5568;
+  }
+  
+  .dark .socialButton {
+    color: #d1d5db;
+    background-color: #4a5568;
+  }
+  
+  .socialButton:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .dark .socialButton:hover {
+    background-color: #2d3748;
+  }
+  
+  .textCenter {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #4a5568;
+  }
+  
+  .dark .textCenter {
+    color: #d1d5db;
+  }
+  
+  .textCenter a {
+    color: #2563eb;
+  }
+  
+  .textCenter a:hover {
+    text-decoration: underline;
+  }
+  
