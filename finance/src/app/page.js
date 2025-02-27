@@ -4,6 +4,7 @@ import Cards from "./Cards.jsx";
 import { auth } from "@/auth";
 import { useSession } from "next-auth/react";
 import { userAgent } from "next/server";
+import Sidebar from "./components/Sidebar";
 
 export default function Home() {
   const {data: session} = useSession();
