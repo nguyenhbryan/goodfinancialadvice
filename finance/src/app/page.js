@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Cards from "./Cards.jsx";
+import Sidebar from "./components/Sidebar";
 
 export default function Home() {
   return (
