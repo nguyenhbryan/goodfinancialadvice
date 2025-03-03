@@ -5,6 +5,7 @@ import Link from 'next/link'; // Using Next.js Link instead of MUI's Link for ro
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { register } from "@/actions/register";
+import styles from "./page.module.css";
 export default function Register() {
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
@@ -57,103 +58,48 @@ export default function Register() {
     };
 
     return (
-        <div className="">
-            <div className="">
-                <h1 className="">
-                    Sign up
-                </h1>
+        <div className={styles.body}>
+            <div className={styles.container}>
+                <h1 className={styles.title}>Sign up</h1>
 
-                <form ref={ref} action={handleSubmit} className="space-y-4">
+                <form className={styles.form}>
                     <div>
-                        <label htmlFor="name" className="">Username</label>
-                        <input
-                            autoComplete="name"
-                            name="name"
-                            required
-                            id="name"
-                            placeholder="Jon Snow"
-                            className=''
-                        />
-                        {nameError && <p className="">{nameErrorMessage}</p>}
+                        <label htmlFor="name" className={styles.label}>Username</label>
+                        <input id="name" name="name" placeholder="Jon Snow" className={styles.input} required />
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="">Email</label>
-                        <input
-                            required
-                            id="email"
-                            placeholder="your@email.com"
-                            name="email"
-                            autoComplete="email"
-                            className=''
-                        />
-                        {emailError && <p className="">{emailErrorMessage}</p>}
+                        <label htmlFor="email" className={styles.label}>Email</label>
+                        <input id="email" name="email" placeholder="your@email.com" className={styles.input} required />
                     </div>
 
                     <div>
-                        <label htmlFor="password" className="">Password</label>
-                        <input
-                            required
-                            name="password"
-                            placeholder="••••••"
-                            type="password"
-                            id="password"
-                            autoComplete="new-password"
-                            className=''
-                        />
-                        {passwordError && <p className="">{passwordErrorMessage}</p>}
+                        <label htmlFor="password" className={styles.label}>Password</label>
+                        <input id="password" name="password" type="password" placeholder="••••••" className={styles.input} required />
                     </div>
 
-                    <div className="">
-                        <input
-                            type="checkbox"
-                            value="allowExtraEmails"
-                            id="allowExtraEmails"
-                            className=""
-                        />
-                        <label htmlFor="allowExtraEmails" className="">I want to receive updates via email.</label>
+                    <div className={styles.checkboxContainer}>
+                        <input type="checkbox" id="allowExtraEmails" className={styles.checkbox} />
+                        <label htmlFor="allowExtraEmails" className={styles.label}>
+                            I want to receive updates via email.
+                        </label>
                     </div>
 
-                    <button
-                        type="submit"
-                        className=""
-                    >
-                        Sign up
-                    </button>
+                    <button type="submit" className={styles.submitButton}>Sign up</button>
                 </form>
 
-                <div className="my-6">
-                    <div className="">
-                        <div className=""></div>
-                        <span className="">or</span>
-                        <div className=""></div>
-                    </div>
+                <div className={styles.divider}>
+                    <div className={styles.dividerLine}></div>
+                    <span className={styles.dividerText}>or</span>
+                    <div className={styles.dividerLine}></div>
                 </div>
 
-                <div className="">
-                    <button
-                        className=""
-                        onClick={() => alert('Sign up with Google')}
-                    >
-                        
-                        <span>Sign up with Google</span>
-                    </button>
+                <button className={styles.socialButton}>Sign up with Google</button>
+                <button className={styles.socialButton}>Sign up with Facebook</button>
 
-                    <button
-                        className=""
-                        onClick={() => alert('Sign up with Facebook')}
-                    >
-                        
-                        <span>Sign up with Facebook</span>
-                    </button>
-                </div>
-
-                <div className="">
-                    <p className="">
-                        Already have an account?{" "}
-                        <Link href="/login" className="">
-                            Sign in
-                        </Link>
+                <div className={styles.textCenter}>
+                    <p>
+                        Already have an account? <a href="/login">Sign in</a>
                     </p>
                 </div>
             </div>
