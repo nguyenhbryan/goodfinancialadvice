@@ -60,7 +60,7 @@ export default function Register() {
     return (
         <div className={styles.body}>
             <div className={styles.container}>
-                <h1 className={styles.title}>Sign up</h1>
+                <h1 className={styles.title}>Sign up </h1>
 
                 <form className={styles.form}>
                     <div>
