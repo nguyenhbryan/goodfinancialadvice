@@ -70,7 +70,7 @@ export default function Login() {
   };
 
   return (
-    <div className="body">
+    <div className={styles.body}>
     <section className={styles.section}>
       <div className={styles.container}>
         <h1 className={styles.title}>Sign in</h1>
