@@ -31,7 +31,7 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.recommended_games}>
-        <Cards name="Blackjack" image="https://play-lh.googleusercontent.com/009hpXoLRxULWBEF8VsHnNTjFrOQVFKfkQfIxZcDGWtVSZEU5mKtSJyy3Zv3pxVcZQ" />
+        <Cards name="Blackjack" image="https://play-lh.googleusercontent.com/009hpXoLRxULWBEF8VsHnNTjFrOQVFKfkQfIxZcDGWtVSZEU5mKtSJyy3Zv3pxVcZQ" href="games\blackjack"/>
         <Cards name="Plinko" image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDs3AioTT6XtxOS1nwXtmcrSR4Rh5xWZ2E0g&s" />
       </div>
     </div>
