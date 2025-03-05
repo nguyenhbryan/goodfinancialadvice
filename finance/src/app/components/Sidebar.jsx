@@ -1,4 +1,5 @@
 import styles from "./Sidebar.module.css";
+import Link from "next/link";
 
 export default function Sidebar() {
     return (
@@ -15,10 +16,10 @@ export default function Sidebar() {
                 <ul className={styles.list}>
                     <li className={styles.active}>
                         <button className={styles.buttons}>
-                            <a href="">
+                            <Link href="/">
                                 <svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" /></svg>
                                 Home
-                            </a>
+                            </Link>
                         </button>
                     </li>
                     <li>
@@ -46,9 +47,9 @@ export default function Sidebar() {
                     </li>
                     <li>
                     <button className={styles.buttons}>
-                            <a href="">
+                            <Link href="/login">
                                 Login
-                            </a>
+                            </Link>
                         </button>
                     </li>
                 </ul>
