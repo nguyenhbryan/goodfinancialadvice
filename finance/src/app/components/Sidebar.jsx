@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./Sidebar.module.css";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
     const [isGamesOpen, setIsGamesOpen] = useState(false);
@@ -66,6 +67,11 @@ export default function Sidebar() {
                             <Link href="/login">
                                 Profile
                             </Link>
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={() => signOut({ redirect: false })}>
+                            signout
                         </button>
                     </li>
                 </ul>
