@@ -61,6 +61,7 @@ export default function Sidebar() {
                             <Link href="/login">
                                 Login
                             </Link>
+                    </button>
                         <button className={styles.buttons}>
                             <Link href="/login">
                                 Profile
