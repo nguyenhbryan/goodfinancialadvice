@@ -1,9 +1,17 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
 .welcome_container {
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
     padding: 50px;
+    min-width: 0;
 }
 
 .welcome_left {
@@ -11,7 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    min-width: 0;
 
 }
 

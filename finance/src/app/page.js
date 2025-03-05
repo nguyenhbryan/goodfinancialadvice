@@ -10,7 +10,7 @@ export default function Home() {
   const {data: session} = useSession();
 
   return (
-    <div>
+    <div className={styles.body}>
       <div className={styles.welcome_container}>
         <div className={styles.welcome_left}>
           <div>
