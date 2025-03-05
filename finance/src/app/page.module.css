@@ -7,6 +7,7 @@
 
 .welcome_container {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     padding: 50px;
@@ -30,7 +31,8 @@
 
 .recommended_games {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 100px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 50px;
 }

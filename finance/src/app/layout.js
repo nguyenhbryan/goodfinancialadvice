@@ -22,12 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
-        <div className="container">
-          <SessionProvider>
-            <Sidebar />
-
-            <div>{children}</div>
-          </SessionProvider>
+      <div className="container">
+        <SessionProvider>
+        <Sidebar/>
+        <div>{children}</div>
+        </SessionProvider>
         </div>
       </body>
     </html>
