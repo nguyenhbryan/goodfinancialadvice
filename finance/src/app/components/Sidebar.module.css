@@ -83,12 +83,13 @@
 }
 
 .submenu {
-    display: none;
+    overflow: hidden;
+    height: 0px;
     transition: 300ms ease-in-out;
 }
 
 .submenu.show {
-    display: block;
+    height: auto;
 }
 
 
