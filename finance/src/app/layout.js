@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <div className="container">
         <SessionProvider>
         <Sidebar/>
-        <div>{children}</div>
+        {children}
         </SessionProvider>
         </div>
       </body>
