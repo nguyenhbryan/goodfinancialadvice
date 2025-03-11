@@ -15,6 +15,17 @@
     padding: 5px 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+.close {
+    padding: 5px;
+    width: 60px;
 }
 
 .list li {
@@ -66,6 +77,11 @@
 .icon {
     flex-shrink: 0;
     fill: #e6e6ef;
+    transition: 300ms ease; 
+}
+
+.rotate {
+    rotate: 180deg;
 }
 
 .sidebar a, .dropdown a{
@@ -83,13 +99,33 @@
 }
 
 .submenu {
-    overflow: hidden;
-    height: 0px;
+    display: grid;
+    grid-template-rows: 0fr;
     transition: 300ms ease-in-out;
 }
 
+.submenu div{
+    overflow: hidden;
+}
+
 .submenu.show {
-    height: auto;
+    grid-template-rows: 1fr;
+}
+
+.submenu li {
+    padding-left: 1em;
+}
+
+.open {
+    margin-left: auto;
+    padding: 1em;
+    background: none;
+    cursor: pointer;
+    border: none;
+}
+
+.open svg {
+    transition: rotate 150ms ease;
 }
 
 
