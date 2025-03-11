@@ -3,7 +3,6 @@
 
 .container {
     min-height: 100vh;
-    min-height: 100dvh;
     color: #e6e6ef;
     display: flex;
 }
@@ -15,8 +14,6 @@
     padding: 5px 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
-
-    position: sticky;
     top: 0;
     align-self: start;
     overflow: hidden;
