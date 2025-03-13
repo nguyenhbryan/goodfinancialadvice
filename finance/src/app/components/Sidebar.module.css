@@ -3,7 +3,6 @@
 
 .container {
     min-height: 100vh;
-    min-height: 100dvh;
     color: #e6e6ef;
     display: flex;
 }
@@ -11,21 +10,40 @@
 .sidebar {
     box-sizing: border-box;
     height: 100vh;
-    flex: 0 1 200px;
+    flex: 0 0 12.5rem;
     padding: 5px 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
-
-    position: sticky;
     top: 0;
     align-self: start;
     overflow: hidden;
     text-wrap: nowrap;
+    transition: flex 300ms ease-in-out;
 }
 
-.close {
-    padding: 5px;
-    width: 60px;
+.sidebar.closed {
+    flex: 0 0 5rem;
+    transition: flex 300ms;
+}
+
+.sidebar.closed .logo,
+.sidebar.closed .buttons span,
+.sidebar.closed .dropdown span,
+.sidebar.closed .submenu li a {
+    display: none;
+}
+
+.icon.hidden {
+    display: none;
+}
+
+.logo.hidden {
+    display: none;
+}
+
+.main {
+    flex: 1;
+    padding: 1em;
 }
 
 .list li {
@@ -37,10 +55,18 @@
 
 .first {
     display: flex;
-    justify-content: space-en;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+.end {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100vh;
+    margin-top: auto;
 }
 
 .buttons {

@@ -7,7 +7,10 @@
   background-color: #1a202c;
   width: 100%;
   }
-  
+
+  .dark .body {
+    background-color: #2d3748;
+  }
   .section {
     min-height: 100vh;
     display: flex;
@@ -15,7 +18,6 @@
     justify-content: space-between;
     padding: 1rem;
     padding-top: 2rem;
-    background-color: #f9fafb;
   }
   
   .dark .section {
@@ -74,6 +76,7 @@
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     color: #2d3748;
+    background-color: #f3f4f6;
   }
   
   .dark .input {
@@ -121,6 +124,7 @@
     font-weight: 500;
     padding: 0.5rem;
     border-radius: 0.5rem;
+    transition: all 0.1s;
   }
   
   .submitButton:hover {
@@ -160,10 +164,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #d1d5db;
     border: 1px solid #d1d5db;
     padding: 0.5rem;
     border-radius: 0.5rem;
     color: #4a5568;
+    transition: all 0.1s;
   }
   
   .dark .socialButton {
