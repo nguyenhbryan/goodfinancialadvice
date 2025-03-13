@@ -33,6 +33,10 @@
     display: none;
 }
 
+.sidebar.closed ~ .main {
+    transition: all 300ms ease-in-out; /* Add this line */
+}
+
 .icon.hidden {
     display: none;
 }
