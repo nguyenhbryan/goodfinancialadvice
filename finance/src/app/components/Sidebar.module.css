@@ -61,6 +61,14 @@
     margin-top: 10px;
 }
 
+.end {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100vh;
+    margin-top: auto;
+}
+
 .buttons {
     width: 100%;
     background: none;
