@@ -1,4 +1,4 @@
-  :root {
+:root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
@@ -30,9 +30,11 @@ body {
       color-scheme: dark;
     }
   }
+
 .container {
   display: flex;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  transition: all 300ms ease-in-out;
 }
