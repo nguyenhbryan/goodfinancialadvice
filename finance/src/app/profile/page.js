@@ -1,6 +1,7 @@
 'use client'
 import { useSession } from "next-auth/react";
 import styles from "./page.module.css";
+import { signOut } from "next-auth/react";
 
 export default function Profile() {
     const { data: session } = useSession();
@@ -18,7 +19,7 @@ export default function Profile() {
                 <p>Coins: {session.user.coins}</p>
                 <p>Member since: {session.user.memberSince}</p>
             </div>
-            <button className={styles["sign-out"]} onClick={() => signOut()}>Sign out</button>
+            <button className={styles["sign-out"]} onClick={() => signOut({ callbackUrl: '/', redirect: false /* change to true on build*/ })}>Sign out</button>
         </div>
     );
 }
