@@ -102,11 +102,6 @@ export default function Login() {
             {passwordError && <p className={styles.errorMessage}>{passwordErrorMessage}</p>}
           </div>
 
-          <div className={styles.checkboxContainer}>
-            <input id="remember" name="remember" type="checkbox" className={styles.checkbox} />
-            <label htmlFor="remember" className={styles.checkboxLabel}>Remember me</label>
-          </div>
-
           <button type="submit" className={styles.submitButton}>Sign In</button>
 
           <Link href="/" onClick={handleClickOpen} className={styles.linkButton}>

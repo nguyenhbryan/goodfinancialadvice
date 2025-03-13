@@ -17,8 +17,8 @@ export default function Profile() {
                 <p>Email: {session.user.email}</p>
                 <p>Coins: {session.user.coins}</p>
                 <p>Member since: {session.user.memberSince}</p>
-                {/* Add more user information as needed */}
             </div>
+            <button className={styles["sign-out"]} onClick={() => signOut()}>Sign out</button>
         </div>
     );
 }
