@@ -54,7 +54,10 @@ export default function Sidebar() {
             <nav className={`${styles.sidebar} ${isSidebarOpen ? styles.closed : ""}`}>
                 <ul className={styles.list}>
                     <li className={styles.first}>
-                        <span className={`${styles.logo} ${isSidebarOpen ? styles.hidden : ""}`}>Coin Craze</span>
+                        <span className={`${styles.logo} ${isSidebarOpen ? styles.hidden : ""}`}>
+                            <img src="mainicon.png" alt="logo" width={50} height={50}></img>
+                            Coin Craze
+                        </span>
                         <button className={`${styles.open} ${isSidebarOpen ? styles.rotate : ""}`} onClick={toggleSidebar}>
                             <svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" /></svg>
                         </button>
@@ -88,9 +91,9 @@ export default function Sidebar() {
                         </button>
                         <ul className={`${styles.submenu} ${isGamesOpen ? styles.show : ""}`}>
                             <div>
-                                <li><Link href="#">Crash</Link></li>
+                                <li><Link href="">Crash</Link></li>
                                 <li><Link href="#">Plinko</Link></li>
-                                <li><Link href="#">Blackjack</Link></li>
+                                <li><Link href="/games/blackjack">Blackjack</Link></li>
                             </div>
                         </ul>
                     </li>

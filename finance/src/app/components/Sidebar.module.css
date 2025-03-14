@@ -65,11 +65,17 @@
     margin-top: 10px;
 }
 
+.first img {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+}
+
 .end {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    height: 100vh;
+    height: 90vh;
     margin-top: auto;
 }
 

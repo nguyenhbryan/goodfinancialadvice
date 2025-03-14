@@ -1,29 +1,53 @@
 'use client'
+import { useEffect } from "react";
 import styles from "./page.module.css";
 import Cards from "./Cards.jsx";
-import { auth } from "@/auth";
 import { useSession } from "next-auth/react";
-import { userAgent } from "next/server";
 import Sidebar from "./components/Sidebar";
 
 export default function Home() {
   const { data: session } = useSession();
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.show);
+        } else {
+          entry.target.classList.remove(styles.show);
+        }
+      });
+    });
+
+    const hiddenElements = document.querySelectorAll(`.${styles.hidden}`);
+    hiddenElements.forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => {
+      hiddenElements.forEach((el) => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
+
   return (
     <div className={styles.body}>
       <div className={styles.welcome_container}>
         <div className={styles.welcome_left}>
-          <div>
-            Welcome {session?.user?.name}
-          </div>
-          <div>
-            Coins: {session?.user?.coins}
-          </div>
-          <div>
-            Wager
-          </div>
-          <div>
-            Profit
+          <div className={styles.hidden}>
+            <div className={styles.welcome_header}>
+              Welcome {session?.user?.name}
+            </div>
+            <div>
+              Coins: {session?.user?.coins}
+            </div>
+            <div>
+              Wager
+            </div>
+            <div>
+              Profit
+            </div>
           </div>
         </div>
         <div className={styles.welcome_right}>
@@ -33,7 +57,7 @@ export default function Home() {
       <div className={styles.recommended_games}>
         <div className={styles.recommended_header}>
           <h1>Trending Games</h1>
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" /></svg>
         </div>
         <div className={styles.cards_container}>
           <Cards name="Slots" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" href="games/slots" />
