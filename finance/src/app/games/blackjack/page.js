@@ -2,43 +2,63 @@ import "./style.css"
 import Image from "next/image"
 import cardBack from "../../../../public/cards/BACK.png"
 
-let dealerSum = 0;
-let yourSum = 0;
-let dealerAceCount = 0;
-let yourAceCount = 0;
-let hidden;
-let deck;
-let canHit = true;
+export default function Blackjack() {
+    let dealerSum = 0;
+    let yourSum = 0;
+    let dealerAceCount = 0;
+    let yourAceCount = 0;
+    let hidden;
+    let deck;
+    let canHit = true;
+
+    buildDeck();
+    //shuffleDeck();
+    startGame();
 
     function buildDeck() {
         let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
         let types = ["C", "D", "H", "S"];
         deck = [];
 
-
-function buildDeck(){
-    let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    let types = ["C", "D", "H", "S"];
-    deck = [];
-
         for (let i = 0; i < types.length; i++) {
             for (let j = 0; j < values.length; j++) {
                 deck.push(values[j] + "-" + types[i])
             }
         }
+
+        console.log(deck);
     }
 
-    buildDeck();
+    function startGame(){
+        hidden = deck.pop();
+        dealerSum += getValue(hidden);
+        dealerAceCount += checkAce(hidden);
+        console.log(hidden);
+        console.log(dealerSum);
+    }
 
-    for(let i = 0; i < types.length; i++){
-        for(let j = 0; j < values.length; j++){
-            deck.push(values[j] + "-" + types[i])   
+    function getValue(card){
+        let data = card.split(" ")
+        let value = data[0];
+
+        if (isNaN(value)){
+            if (value == "A"){
+                return 11;
+            }
+            return 10;
         }
+
+        return parseInt(value);
     }
-}
 
+    function checkAce(card){
+        if (card[0] == "A"){
+            return 1;
+        } return 0;
+    }
 
-export default function Blackjack(){
+    
+
     return (
         <body>
             <h2>Dealer: <span id={"dealer-sum"}></span></h2>
