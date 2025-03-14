@@ -25,8 +25,8 @@ export default function Login() {
   };
 
   const handleSubmit = async (event) => {
-    
-    
+
+
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const res = await signIn("credentials", {
@@ -37,100 +37,77 @@ export default function Login() {
     if (res?.error) {
       setError(res.error);
     }
-    if (res?.ok) {
+    else if (res?.ok) {
       return router.push("/");
     }
   };
 
-  const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
 
-    let isValid = true;
-
-    if (!email?.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
-    }
-
-    if (!password?.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    return isValid;
-  };
 
   return (
     <div className={styles.body}>
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <h1 className={styles.title}>Sign in</h1>
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Sign in</h1>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
-          {error && <div className={styles.errorMessage}>{error}</div>}
+          <form className={styles.form} onSubmit={handleSubmit}>
 
-          <div>
-            <label htmlFor="email" className={styles.label}>Email</label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              required
-              name="email"
-              className={`${styles.input} ${emailError ? styles.inputError : ''}`}
-            />
-            {emailError && <p className={styles.errorMessage}>{emailErrorMessage}</p>}
+
+            <div>
+              <label htmlFor="email" className={styles.label}>Email</label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                required
+                name="email"
+                className={`${styles.input} ${emailError ? styles.inputError : ''}`}
+              />
+              {emailError && <p className={styles.errorMessage}>{emailErrorMessage}</p>}
+            </div>
+
+            <div>
+              <label htmlFor="password" className={styles.label}>Password</label>
+              <input
+                type="password"
+                placeholder="••••••"
+                name="password"
+                required
+                className={`${styles.input} ${passwordError ? styles.inputError : ''}`}
+              />
+              {passwordError && <p className={styles.errorMessage}>{passwordErrorMessage}</p>}
+            </div>
+
+            <button type="submit" className={styles.submitButton}>Sign In</button>
+            {error && <div className={styles.errorMessage}>{error}</div>}
+
+            <Link href="/" onClick={handleClickOpen} className={styles.linkButton}>
+              Forgot your password?
+            </Link>
+          </form>
+
+          <div className={styles.divider}>
+            <span className={styles.dividerText}>or</span>
           </div>
 
-          <div>
-            <label htmlFor="password" className={styles.label}>Password</label>
-            <input
-              type="password"
-              placeholder="••••••"
-              name="password"
-              required
-              className={`${styles.input} ${passwordError ? styles.inputError : ''}`}
-            />
-            {passwordError && <p className={styles.errorMessage}>{passwordErrorMessage}</p>}
+          <div className={styles.form}>
+            <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Google')}>
+              Sign in with Google
+            </button>
+
+            <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Facebook')}>
+              Sign in with Facebook
+            </button>
           </div>
 
-          <button type="submit" className={styles.submitButton}>Sign In</button>
+          <p className={styles.textCenter}>
+            Don&apos;t have an account?
+            <Link href="/register" className={styles.linkButton}>
+              Sign up
+            </Link>
+          </p>
 
-          <Link href="/" onClick={handleClickOpen} className={styles.linkButton}>
-            Forgot your password?
-          </Link>
-        </form>
-
-        <div className={styles.divider}>
-          <span className={styles.dividerText}>or</span>
         </div>
-
-        <div className={styles.form}>
-          <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Google')}>
-            Sign in with Google
-          </button>
-
-          <button type="button" className={styles.socialButton} onClick={() => alert('Sign in with Facebook')}>
-            Sign in with Facebook
-          </button>
-        </div>
-
-        <p className={styles.textCenter}>
-          Don&apos;t have an account?
-          <Link href="/register" className={styles.linkButton}>
-            Sign up
-          </Link>
-        </p>
-      </div>
-    </section>
+      </section>
     </div>
   );
 };
