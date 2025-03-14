@@ -60,7 +60,7 @@ export default function Sidebar() {
                 <ul className={styles.list}>
                     <li className={styles.first}>
                         <span className={`${styles.logo} ${isSidebarOpen ? styles.hidden : ""}`}>
-                            <img src="mainicon.png" alt="logo" width={50} height={50}></img>
+                            <img src="mainicon.png" alt="logo" width={75} height={75} ></img>
                             Coin Craze
                         </span>
                         <button className={`${styles.open} ${isSidebarOpen ? styles.rotate : ""}`} onClick={toggleSidebar}>

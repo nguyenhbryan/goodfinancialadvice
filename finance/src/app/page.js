@@ -55,7 +55,7 @@ export default function Home() {
         <div className={styles.welcome_left}>
           <div className={styles.hidden}>
             <div className={styles.welcome_header}>
-              Welcome {session?.user?.name}
+              Welcome. {session?.user?.name}
             </div>
             <div>
               Coins: {session?.user?.coins}
@@ -69,7 +69,9 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.welcome_right}>
-          Placement
+          <div className={styles.hidden}>
+          <img className={styles.logo_image} src="coincraze.png"></img>
+          </div>
         </div>
       </div>
       <div className={styles.information_container}>
@@ -146,6 +148,14 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div className={styles.rights}>
+        <div className={styles.rights_text}>
+          <span className={styles.title}>Coin Craze</span>
+          <span className={styles.rights_reserved}>© 2024 Coin Craze | All Rights Reserved.</span>
+        </div>
+      </div>
     </div>
+
   );
 }

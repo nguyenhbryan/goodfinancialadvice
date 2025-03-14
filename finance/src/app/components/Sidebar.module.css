@@ -9,7 +9,7 @@
 
 .sidebar {
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     flex: 0 0 12.5rem;
     padding: 5px 1em;
     background-color: #11121a;
@@ -59,16 +59,18 @@
 
 .first {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
+    align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 10px;
 }
 
 .first img {
-    width: 2em;
-    height: 2em;
+    width: 50px;
+    height: 30px;
     border-radius: 50%;
+    padding: 0px;
+    margin: 0px;
 }
 
 .end {
@@ -90,13 +92,21 @@
     gap: 1em;
 }
 
-.sidebar a, .dropdown, .logo, .buttons{
+.sidebar a, .dropdown, .buttons{
     border-radius: .5em;
     padding: 5px;
     color: #e6e6ef;
     display: flex;
     align-items: center;
     gap: 1em;
+}
+
+.logo {
+    border-radius: .5em;
+    padding: 5px;
+    color: #e6e6ef;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown {
