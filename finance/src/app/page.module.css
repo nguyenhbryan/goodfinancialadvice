@@ -92,7 +92,7 @@
 
 .information_left {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start; /* Change this line */
     min-width: 0;
     width: 50%;
     padding: 4em;
@@ -114,7 +114,7 @@
 .information_right {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start; /* Change this line */
     width: 50%;
     min-width: 0;
     padding: 4em;
@@ -203,7 +203,7 @@
 
 .title {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start; /* Change this line */
     align-items: flex-start;
     text-align: center;
     font-size: 1.5em;

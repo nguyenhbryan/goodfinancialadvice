@@ -15,7 +15,7 @@
     background-color: #11121a;
     border-right: 1px solid #42434a;
     top: 0;
-    align-self: start;
+    align-self: flex-start;
     overflow: hidden;
     text-wrap: nowrap;
     transition: flex 300ms ease-in-out;
@@ -59,7 +59,7 @@
 
 .first {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 10px;
