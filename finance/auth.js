@@ -20,14 +20,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: credentials?.email,
         }).select("+password");
 
-        if (!user) throw new Error("Wrong Email");
+        if (!user) { throw new Error("Wrong Email") };
 
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user.password
         );
 
-        if (!passwordMatch) throw new Error("Wrong Password");
+        if (!passwordMatch) { throw new Error("Wrong Password") };
 
         return user;
       },
@@ -56,4 +56,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
-  
