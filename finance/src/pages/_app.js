@@ -1,5 +1,3 @@
-import styles from 
-
 export default function MyApp({ Component, pageProps }) {
     return (
         <html>

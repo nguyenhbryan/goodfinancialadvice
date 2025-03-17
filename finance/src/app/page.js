@@ -57,15 +57,6 @@ export default function Home() {
             <div className={styles.welcome_header}>
               Welcome. {session?.user?.name}
             </div>
-            <div>
-              Coins: {session?.user?.coins}
-            </div>
-            <div>
-              Wager
-            </div>
-            <div>
-              Profit
-            </div>
           </div>
         </div>
         <div className={styles.welcome_right}>
