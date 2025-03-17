@@ -2,23 +2,25 @@
 
 
 .container {
-    min-height: 100vh;
+    height: 100dvh;
     color: #e6e6ef;
     display: flex;
+    position: sticky;
+    top: 0;
 }
 
 .sidebar {
     box-sizing: border-box;
-    height: 100%;
-    flex: 0 0 12.5rem;
+    flex: 0 0 12.5rem;  
     padding: 0.5rem 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
-    top: 0;
     align-self: flex-start;
     overflow: hidden;
     text-wrap: nowrap;
     transition: flex 300ms ease-in-out;
+    position: sticky;
+    top: 0;
 }
 
 .sidebar.closed {

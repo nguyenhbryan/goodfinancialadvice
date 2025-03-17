@@ -55,13 +55,16 @@ export default function Home() {
         <div className={styles.welcome_left}>
           <div className={styles.hidden}>
             <div className={styles.welcome_header}>
-              Welcome, {session?.user?.name}
+              <h1>Welcome to Coin Craze</h1>
+              <span className={styles.welcome_text}>
+                {session ? `Hello, ${session.user.name}!` : "Hello, Guest!"}
+              </span>
             </div>
           </div>
         </div>
         <div className={styles.welcome_right}>
           <div className={styles.hidden}>
-          <img className={styles.logo_image} src="coincraze.png"></img>
+            <img className={styles.logo_image} src="coincraze.png"></img>
           </div>
         </div>
       </div>

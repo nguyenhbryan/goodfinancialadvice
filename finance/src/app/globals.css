@@ -38,3 +38,8 @@ body {
   overflow-x: hidden;
   transition: all 300ms ease-in-out;
 }
+
+.sidebar {
+  position: sticky;
+  top: 0;
+}
