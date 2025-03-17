@@ -30,11 +30,18 @@ body {
       color-scheme: dark;
     }
   }
+.hhh {
+  display: flex;
+}
 
 .container {
   display: flex;
-  width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
   transition: all 300ms ease-in-out;
+}
+
+.sidebar {
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
 }
