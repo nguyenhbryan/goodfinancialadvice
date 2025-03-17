@@ -78,7 +78,7 @@ export default function Home() {
         <div className={styles.information_left}>
           <div className={styles.hidden}>
             <div className={styles.information_image}>
-              <img src="https://media.istockphoto.com/id/1134767146/vector/hand-click-button.jpg?s=612x612&w=0&k=20&c=eP4evMMQHayLgh9Ojau4YpEoRmLZ8V28Pjto9LwUbFY="></img>
+              <img src="interactive.png"></img>
             </div>
           </div>
           <div className={styles.hidden}>
@@ -99,7 +99,7 @@ export default function Home() {
         <div className={styles.information_right}>
           <div className={styles.hidden}>
             <div className={styles.information_image}>
-              <img src="https://thumbs.dreamstime.com/b/vector-illstration-no-cash-icon-flat-design-vector-illstration-no-cash-icon-flat-design-isolated-170514654.jpg"></img>
+              <img src="nomoney.png"></img>
             </div>
           </div>
           <div className={styles.hidden}>
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
         <div className={styles.cards_container}>
           <div className={styles.cards_hidden}>
-            <Cards name="Slots" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" href="games/slots" />
+            <Cards name="Plinko" image="PLINKO.png" href="" />
           </div>
           <div className={styles.cards_hidden}>
             <Cards name="Blackjack" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" href="games/blackjack" />
