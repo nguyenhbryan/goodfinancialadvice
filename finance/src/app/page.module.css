@@ -40,8 +40,10 @@
     align-items: center;
     text-align: center;
     margin-bottom: 1em;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 600;
+    margin-left: 1em;
+    
 }
 
 .welcome_left {
