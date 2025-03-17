@@ -104,10 +104,8 @@ export default function Sidebar() {
                             </div>
                         </ul>
                     </li>
-                    <li>
-                        {showProfileOrLogin()}
-                    </div>
-                </div>
+                </ul>
+                {showProfileOrLogin()}
             </nav>
         </div>
     );
