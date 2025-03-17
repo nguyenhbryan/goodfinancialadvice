@@ -9,13 +9,13 @@
 
 .sidebar {
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     flex: 0 0 12.5rem;
     padding: 0.5rem 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
     top: 0;
-    align-self: start;
+    align-self: flex-start;
     overflow: hidden;
     text-wrap: nowrap;
     transition: flex 300ms ease-in-out;
@@ -59,15 +59,25 @@
 
 .first {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-bottom: 20px;
     margin-top: 10px;
+}
+
+.first img {
+    width: 50px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0px;
 }
 
 .end {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+    height: 90vh;
     margin-top: auto;
 }
 
@@ -82,13 +92,21 @@
     gap: 1em;
 }
 
-.sidebar a, .dropdown, .logo, .buttons{
+.sidebar a, .dropdown, .buttons{
     border-radius: .5em;
     padding: 5px;
     color: #e6e6ef;
     display: flex;
     align-items: center;
     gap: 1em;
+}
+
+.logo {
+    border-radius: .5em;
+    padding: 5px;
+    color: #e6e6ef;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown {
