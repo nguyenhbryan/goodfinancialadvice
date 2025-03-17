@@ -11,7 +11,7 @@
     box-sizing: border-box;
     height: 100vh;
     flex: 0 0 12.5rem;
-    padding: 5px 1em;
+    padding: 0.5rem 1em;
     background-color: #11121a;
     border-right: 1px solid #42434a;
     top: 0;
@@ -68,8 +68,6 @@
 .end {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    height: 100vh;
     margin-top: auto;
 }
 
@@ -120,6 +118,7 @@
 
 .sidebar a:hover, .dropdown:hover, .buttons:hover{
     background-color: #222533;
+    transition: all 300ms ease-in-out;
 
 }
 
@@ -158,4 +157,9 @@
     transition: rotate 150ms ease;
 }
 
-
+.items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 92%;
+}
