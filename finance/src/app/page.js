@@ -55,7 +55,7 @@ export default function Home() {
         <div className={styles.welcome_left}>
           <div className={styles.hidden}>
             <div className={styles.welcome_header}>
-              Welcome. {session?.user?.name}
+              Welcome, {session?.user?.name}
             </div>
           </div>
         </div>

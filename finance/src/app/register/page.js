@@ -62,7 +62,7 @@ export default function Register() {
             <div className={styles.container}>
                 <h1 className={styles.title}>Sign up </h1>
 
-                <form className={styles.form}>
+                <form className={styles.form} action={handleSubmit}>
                     <div>
                         <label htmlFor="name" className={styles.label}>Username</label>
                         <input id="name" name="name" placeholder="Jon Snow" className={styles.input} required />
@@ -85,7 +85,7 @@ export default function Register() {
                         </label>
                     </div>
 
-                    <button type="submit" className={styles.submitButton}>Sign up</button>
+                    <button type="submit" className={styles.submitButton} >Sign up</button>
                 </form>
 
                 <div className={styles.divider}>
