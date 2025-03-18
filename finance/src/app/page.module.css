@@ -29,6 +29,8 @@
     justify-content: center; /* Change this line */
     align-items: center;
     padding: 10px;
+    margin-bottom: 7.5rem;
+    margin-top: 7.5rem;
     width: 100%;
     min-width: 0;
 }
@@ -68,8 +70,9 @@
     display: flex;
     justify-content: center; /* Change this line */
     align-items: center; /* Change this line */
-    width: 700px;
-    height: 700px;
+    width: 43.75rem;
+    max-width: 100%;
+    height: auto;
     object-fit: contain;
 }
 
