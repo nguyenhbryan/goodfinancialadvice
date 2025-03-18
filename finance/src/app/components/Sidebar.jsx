@@ -33,7 +33,8 @@ export default function Sidebar() {
                             </button>
                         </li>
                     </ul>
-                </div>);
+                </div>
+            );
         }
         else {
             return (
