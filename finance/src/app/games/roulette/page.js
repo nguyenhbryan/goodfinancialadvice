@@ -69,49 +69,48 @@ export default function Roulette() {
             <div className={styles.container}>
                 <h1>Roulette Game</h1>
                 <p>Bet: Odd/Even, Red/Black, Number</p>
-                <div className={styles.betContainer}>
-                    <label>
-                        Bet Type:
-                        <select name="type" value={bet.type} onChange={handleBetChange}>
-                            <option value="">Select</option>
-                            <option value="odd">Odd</option>
-                            <option value="even">Even</option>
-                            <option value="red">Red</option>
-                            <option value="black">Black</option>
-                            <option value="number">Number</option>
-                        </select>
-                    </label>
-                    {bet.type === 'number' && (
+                <div className={styles.rouletteContainer}>
+                    <div className={styles.betContainer}>
                         <label>
-                            Bet Value:
-                            <input
-                                type="number"
-                                name="value"
-                                value={bet.value}
-                                onChange={handleBetChange}
-                                min="0"
-                                max="36"
-                            />
+                            Bet Type:
+                            <select name="type" value={bet.type} onChange={handleBetChange}>
+                                <option value="">Select</option>
+                                <option value="odd">Odd</option>
+                                <option value="even">Even</option>
+                                <option value="red">Red</option>
+                                <option value="black">Black</option>
+                                <option value="number">Number</option>
+                            </select>
                         </label>
-                    )}
+                        <div>Total amount:</div>
+                        <input
+                            type="number"
+                            name="value"
+                            value={bet.value}
+                            onChange={handleBetChange}
+                            placeholder="Enter bet amount"
+                            />
+                        <button onClick={handleSpinClick}>SPIN</button>
+                    </div>
+
+                    <Wheel
+                        mustStartSpinning={mustSpin}
+                        prizeNumber={prizeNumber}
+                        data={data}
+                        outerBorderColor='white'
+                        textColors={['white']}
+                        innerRadius={50}
+                        innerBorderWidth={15}
+                        innerBorderColor='white'
+                        textDistance={80}
+                        radiusLineColor='#FFE140'
+                        onStopSpinning={() => {
+                            setMustSpin(false);
+                            setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
+                        }}
+                    />
+
                 </div>
-                <Wheel
-                    mustStartSpinning={mustSpin}
-                    prizeNumber={prizeNumber}
-                    data={data}
-                    outerBorderColor='white'
-                    textColors={['white']}
-                    innerRadius={50}
-                    innerBorderWidth={15}
-                    innerBorderColor='white'
-                    textDistance={80}
-                    radiusLineColor='#FFE140'
-                    onStopSpinning={() => {
-                        setMustSpin(false);
-                        setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
-                    }}
-                />
-                <button onClick={handleSpinClick}>SPIN</button>
                 {result && <div className={styles.result}>Result: {result}</div>}
                 <div className={styles.currentBet}>
                     <h2>Current Bet</h2>

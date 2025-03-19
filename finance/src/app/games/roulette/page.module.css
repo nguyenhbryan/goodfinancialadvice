@@ -14,3 +14,15 @@
     border: 1px solid #ffffff;
     border-radius: 5px;
 }
+
+.betContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.rouletteContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: gray;
+    border-radius: 10px;
+}
