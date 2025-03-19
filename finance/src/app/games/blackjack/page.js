@@ -252,6 +252,7 @@ export default function Blackjack() {
   const cardStyle = {
     width: "150px",
     marginRight: "5px",
+    padding: "5px",
     height: "auto", // Let the height adjust automatically to maintain aspect ratio
   };
 
@@ -260,7 +261,7 @@ export default function Blackjack() {
   };
 
   return (
-    <body style={{ color: "white" }}>
+    <body style={{ color: "white"}}>
       {/* Default text color for the body */}
       {!gameStarted && showStartGameButton && (
         <button onClick={handleStartGame}>Start Game</button>
