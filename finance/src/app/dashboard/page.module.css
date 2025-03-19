@@ -8,6 +8,14 @@
     padding: 20px;
 }
 
+.subtitle {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: #e6e6ef;
+
+}
+
 .container {
     display: flex;
     align-items: flex-start;
@@ -29,6 +37,33 @@
     text-align: start;
     padding: 20px;
 }
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: start;
+    margin-bottom: 1em;
+}
+
+.hello {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: #e6e6ef;
+}
+
+.name {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: .75em;
+}
+
+.separator {
+    height: 10px;
+    background-color: red;
+    border: none;
+  }
 
 .news {
     display: flex;
@@ -52,4 +87,12 @@
     align-items: flex-start;
     text-align: start;
     margin-bottom: 1em;
+}
+
+
+.profile, .avatar, .news, .achievements, .stats {
+    background-color: #001b3a;
+    padding: 1.5em;
+    border-radius: 2em;
+
 }
