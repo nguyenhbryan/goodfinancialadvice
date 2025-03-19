@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import styles from './page.module.css';
+import RouletteNumbers from './rouletteNumbers';
 
 export default function Roulette() {
     const [mustSpin, setMustSpin] = useState(false);
@@ -71,28 +72,17 @@ export default function Roulette() {
                 <p>Bet: Odd/Even, Red/Black, Number</p>
                 <div className={styles.rouletteContainer}>
                     <div className={styles.betContainer}>
-                        <label>
-                            Bet Type:
-                            <select name="type" value={bet.type} onChange={handleBetChange}>
-                                <option value="">Select</option>
-                                <option value="odd">Odd</option>
-                                <option value="even">Even</option>
-                                <option value="red">Red</option>
-                                <option value="black">Black</option>
-                                <option value="number">Number</option>
-                            </select>
-                        </label>
                         <div>Total amount:</div>
                         <input
                             type="number"
                             name="value"
                             value={bet.value}
                             onChange={handleBetChange}
-                            placeholder="Enter bet amount"
+                            placeholder="0.00"
                             />
-                        <button onClick={handleSpinClick}>SPIN</button>
+                        <button className={styles.playButton} onClick={handleSpinClick}>Play</button>
                     </div>
-
+                    <div>
                     <Wheel
                         mustStartSpinning={mustSpin}
                         prizeNumber={prizeNumber}
@@ -109,7 +99,8 @@ export default function Roulette() {
                             setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
                         }}
                     />
-
+                    <div><RouletteNumbers/></div>
+                    </div>
                 </div>
                 {result && <div className={styles.result}>Result: {result}</div>}
                 <div className={styles.currentBet}>
