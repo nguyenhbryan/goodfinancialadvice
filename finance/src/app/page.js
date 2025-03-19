@@ -121,7 +121,7 @@ export default function Home() {
             <Cards name="Plinko" image="PLINKO.png" href="" />
           </div>
           <div className={styles.cards_hidden}>
-            <Cards name="Blackjack" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" href="games/blackjack" />
+            <Cards name="Blackjack" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" link="games/blackjack" />
           </div>
           <div className={styles.cards_hidden}>
             <Cards name="Plinko" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
