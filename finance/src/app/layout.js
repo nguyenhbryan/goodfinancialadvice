@@ -31,7 +31,6 @@ export default function RootLayout({ children }) {
               <Sidebar />
               </div>
             <div className="container">
-              
               {children}
             </div>
           </SessionProvider>

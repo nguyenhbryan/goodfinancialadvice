@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Cards from "./Cards.jsx";
 import { useSession } from "next-auth/react";
 import Sidebar from "./components/Sidebar";
+import Link from "next/link";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -129,7 +130,9 @@ export default function Home() {
             <Cards name="Crash" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
           </div>
           <div className={styles.cards_hidden}>
+            <Link href="/games/roulette">
             <Cards name="Roulette" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
+            </Link>
           </div>
           <div className={styles.cards_hidden}>
             <Cards name="Dice" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
