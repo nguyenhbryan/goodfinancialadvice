@@ -12,10 +12,14 @@ export default function Dashboard() {
             <div className={styles.container}>
                 <div className={styles.left_container}>
                     <div className={styles.avatar}>
-                        <h1 className={styles.subtitle}>Hello {session?.user?.name}</h1>
+                        <h1 className={styles.hello}>Hello,</h1>
+                        <span className={styles.name}>
+                            {session ? `${session.user.name}` : "Guest"}
+                        </span>
+                        <hr className={styles.separator}></hr>
                     </div>
                     <div className={styles.profile}>
-                        <h1 className={styles.subtitle}>Profile</h1>
+                        <h1 className={styles.subtitle}>Account overview</h1>
                         <p>Here's a summary of your finances.</p>
                         <p>Current Balance: {session?.user?.coins}</p>
                     </div>
