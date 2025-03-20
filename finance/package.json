@@ -17,7 +17,8 @@
     "react": "^19.0.0",
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^19.0.0",
-    "socket.io-client": "^4.8.1"
+    "socket.io-client": "^4.8.1",
+    "websocket": "^1.0.35"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
