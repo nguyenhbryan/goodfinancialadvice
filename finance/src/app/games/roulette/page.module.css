@@ -1,4 +1,5 @@
 .container {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,7 +7,6 @@
     width: 100vw;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
 
 }
 
@@ -18,6 +18,7 @@
 .betContainer {
     display: flex;
     flex-direction: column;
+    padding: 0.5rem;
 }
 
 .rouletteContainer {
@@ -42,4 +43,35 @@
 .playButton:hover {
     background-color: rgba(140, 241, 140, 0.849);
     transition: 0.5s ease;
+}
+
+.wheelSize {
+    transform: scale(0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wheelContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+
+}
+
+.amountText {
+    font-size: 20px;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
 }
