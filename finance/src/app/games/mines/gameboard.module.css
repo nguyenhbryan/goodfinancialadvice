@@ -1,0 +1,98 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px; 
+    margin-bottom: 16px;
+    width: fit-content;
+    margin: 0 auto; /* Center the gameboard */
+    padding: 16px; /* Add padding to ensure no shifting */
+    padding: 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #1a1a1a; 
+}
+
+.circle {
+    aspect-ratio: 1 / 1;
+    border-radius: 8px; 
+    cursor: pointer;
+    width: 4rem; /* Enlarge pieces */
+    height: 4rem; /* Enlarge pieces */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease-in-out; /* Ensure transition is only for transform */
+    font-size: 2rem; /* Adjust icon size */
+    background-color: #333; /* Darker tile background */
+    color: #fff; /* White text color */
+    border: 2px solid #444; /* Darker border */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+/* Responsive styles */
+@media (min-width: 640px) { /* sm */
+    .circle {
+        width: 5rem; /* sm:w-20 */
+        height: 5rem;
+    }
+}
+
+@media (min-width: 768px) { /* md */
+    .circle {
+        width: 6rem; /* md:w-24 */
+        height: 6rem;
+    }
+}
+
+@media (min-width: 1024px) { /* lg */
+    .circle {
+        width: 7rem; /* lg:w-28 */
+        height: 7rem;
+    }
+}
+
+/* State styles */
+.hidden {
+    background-color: #333; /* Darker hidden tile background */
+    border: 2px solid #444; /* Darker border */
+}
+
+.gem {
+    background-color: #3b82f6; /* bg-blue-500 */
+    color: white;
+}
+
+.bomb {
+    background-color: #ef4444; /* bg-red-500 */
+    color: white;
+}
+
+/* Animation for clicking */
+.circle:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out; /* Ensure transition is only for transform */
+}
+
+/* Game info styles */
+.gameInfo {
+    font-family: "Arial Black", Arial, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    text-align: start;
+    margin-top: 16px;
+}
+
+.gameOver {
+    font-family: "Arial Black", Arial, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    text-align: start;
+    margin-top: 16px;
+}

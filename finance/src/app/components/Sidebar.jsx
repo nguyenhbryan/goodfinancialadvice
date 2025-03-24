@@ -98,7 +98,7 @@ export default function Sidebar() {
                                 <li><Link href="">Crash</Link></li>
                                 <li><Link href="#">Plinko</Link></li>
                                 <li><Link href="/games/blackjack">Blackjack</Link></li>
-                                <li><Link href="/games/crash">Crash</Link></li>
+                                <li><Link href="/games/mines">Mines</Link></li>
                             </div>
                         </ul>
                     </li>

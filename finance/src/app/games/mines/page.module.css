@@ -1,0 +1,141 @@
+.gameContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.settings_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    width: 100%; /* Ensure the top section takes full width */
+}
+
+.game {
+    width: 100%;
+    max-width: 800px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 2px solid #444;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+.game button{
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings {
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 16px;
+    background-color: #2c2c2c;
+    border-radius: 8px 0 0 8px; /* Rounded corners on the left side */
+    color: #fff;
+    border-right: 2px solid #444; /* Add border to the right to connect with the game */
+}
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 8px;
+}
+
+.input {
+    margin-bottom: 16px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.button {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.startButton {
+    background-color: #449e48; /* Green */
+    color: #000000;
+}
+
+.startButton:hover {
+    background-color: #357a38; /* Lighter Green */
+}
+
+.cashoutButton {
+    background-color: #ef4444; /* Red */
+    color: #000000;
+}
+
+.cashoutButton:hover {
+    background-color: #dc2626; /* Darker red */
+}
+
+.gameOver {
+    margin-top: 16px;
+    color: #fff;
+}
+
+.gameInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: start;
+    justify-content: start;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #2c2c2c;
+    width: 100%;
+}
+
+.bottom {
+    width: 100%;
+    margin-top: 16px;
+}
