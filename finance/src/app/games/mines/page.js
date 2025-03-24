@@ -93,40 +93,48 @@ export default function Mines() {
                 <div className={styles.sidebar}>
                     <h2 className={styles.settings}>Game Settings</h2>
                     <div className={styles.settingsContainer}>
-                        <label htmlFor="bombCount" className={styles.label}>
-                            Bomb Count (1-23):
-                        </label>
-                        <input
-                            type="number"
-                            id="bombCount"
-                            value={bombCount}
-                            onChange={handleBombCountChange}
-                            className={styles.input}
-                            min="1"
-                            max="23"
-                            disabled={isGameStarted}
-                        />
                         <div>
-                            <label htmlFor="betAmount" className={styles.label}>
-                                Bet Amount (min: {MIN_BET}):
-                            </label>
-                            <input
-                                type="number"
-                                id="betAmount"
-                                value={betAmount}
-                                onChange={handleBetAmountChange}
-                                className={styles.input}
-                                min={MIN_BET}
-                                step="0.01"
-                                disabled={isGameStarted}
-                            />
+                            <div>
+                                <label htmlFor="betAmount" className={styles.label}>
+                                    Bet Amount (min: {MIN_BET}):
+                                </label>
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="betAmount"
+                                    value={betAmount}
+                                    onChange={handleBetAmountChange}
+                                    className={styles.input}
+                                    min={MIN_BET}
+                                    step="0.01"
+                                    disabled={isGameStarted}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="bombCount" className={styles.label}>
+                                    Bombs
+                                </label>
+                            </div>
+                            <div>
+                                <input
+                                    type="number"
+                                    id="bombCount"
+                                    value={bombCount}
+                                    onChange={handleBombCountChange}
+                                    className={styles.input}
+                                    min="1"
+                                    max="23"
+                                    disabled={isGameStarted}
+                                />
+                            </div>
                         </div>
                         <button
                             onClick={handleStartGame}
                             className={`${styles.button} ${styles.startButton}`}
                             disabled={isGameStarted}
                         >
-                            {isGameStarted ? "Game In Progress" : "Start Game"}
+                            {isGameStarted ? "Game In Progress" : "Play"}
                         </button>
                         <button
                             onClick={handleCashout}
@@ -152,20 +160,29 @@ export default function Mines() {
             </div>
             <div className={styles.bottom}>
                 <div className={styles.gameInfo}>
-                    <h2>About Mines</h2>
+                    <h1>What is Mines?</h1>
                     <p>
-                        Mines is a thrilling game of chance where players bet an amount and try to uncover safe tiles on a game board without hitting a bomb. 
-                        The game starts with a set number of bombs hidden among the tiles. Each safe tile you uncover increases your potential winnings, 
+                        Mines is a thrilling game of chance where players bet an amount and try to uncover safe tiles on a game board without hitting a bomb.
+                        The game starts with a set number of bombs hidden among the tiles. Each safe tile you uncover increases your potential winnings,
                         but hitting a bomb ends the game and you lose your bet. You can cash out at any time to secure your winnings.
                     </p>
-                    <h3>How to Play</h3>
-                    <ul>
-                        <li>Set the number of bombs (between 1 and 23) and your bet amount.</li>
-                        <li>Click "Start Game" to begin.</li>
-                        <li>Click on the tiles to uncover them. Each safe tile increases your winnings.</li>
-                        <li>If you uncover a bomb, the game is over and you lose your bet.</li>
-                        <li>You can cash out at any time to secure your winnings.</li>
-                    </ul>
+                    <h1>How to Play the Mines Game</h1>
+                    <h2>Objective</h2>
+                    <p>
+                        Set your bet amount and the number of bombs on the game board.
+                    </p>
+                    <p>
+                        Click on tiles to uncover them. Each tile you uncover increases your potential winnings.
+                    </p>
+                    <p>
+                        If you hit a bomb, the game is over and you lose your bet.
+                    </p>
+                    <p>
+                        You can cash out at any time to secure your winnings.
+                    </p>
+                    <p>
+                        The goal is to uncover as many safe tiles as possible without hitting a bomb.
+                    </p>
                 </div>
             </div>
         </div>

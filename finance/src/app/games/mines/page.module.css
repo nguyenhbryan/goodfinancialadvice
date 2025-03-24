@@ -1,12 +1,7 @@
 .gameContainer {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
 }
 
 .settings_header {
@@ -25,9 +20,9 @@
 
 .game {
     width: 100%;
-    max-width: 800px;
     background-color: #1a1a1a;
-    border-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     box-sizing: border-box;
     border: 2px solid #444;
     display: flex;
@@ -59,7 +54,7 @@
 }
 
 .sidebar {
-    width: 300px;
+    width: 250px;
     padding: 16px;
     background-color: #2c2c2c;
     border-radius: 8px 0 0 8px; /* Rounded corners on the left side */
@@ -121,11 +116,10 @@
 .gameInfo {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 16px;
     color: #fff;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;;
     text-align: start;
     justify-content: start;
     border: 2px solid #444;
@@ -133,6 +127,26 @@
     padding: 16px;
     background-color: #2c2c2c;
     width: 100%;
+}
+
+.gameInfo p, .gameInfo h1, .gameInfo h2 {
+    margin-bottom: 8px;
+}
+
+.gameInfo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.gameInfo h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.gameInfo p {
+    color: #ccc;
 }
 
 .bottom {
