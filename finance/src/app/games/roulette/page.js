@@ -1,10 +1,13 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Wheel } from 'react-custom-roulette';
 import styles from './page.module.css';
 import RouletteNumbers from './rouletteNumbers';
+import dynamic from 'next/dynamic';
+
+const Wheel = dynamic(() => import('react-custom-roulette').then(mod => mod.Wheel), { ssr: false });
 
 export default function Roulette() {
+    
     const [mustSpin, setMustSpin] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState(0);
     const [result, setResult] = useState(null);
@@ -68,12 +71,11 @@ export default function Roulette() {
     return (
         <>
             <div className={styles.container}>
-                <h1>Roulette Game</h1>
-                <p>Bet: Odd/Even, Red/Black, Number</p>
                 <div className={styles.rouletteContainer}>
                     <div className={styles.betContainer}>
-                        <div>Total amount:</div>
+                        <div className={styles.amountText}>Total amount:</div>
                         <input
+                            className={styles.input}
                             type="number"
                             name="value"
                             value={bet.value}
@@ -82,7 +84,8 @@ export default function Roulette() {
                             />
                         <button className={styles.playButton} onClick={handleSpinClick}>Play</button>
                     </div>
-                    <div>
+                    <div className={styles.wheelContainer}>
+                    <div className={styles.wheelSize}>
                     <Wheel
                         mustStartSpinning={mustSpin}
                         prizeNumber={prizeNumber}
@@ -98,16 +101,11 @@ export default function Roulette() {
                             setMustSpin(false);
                             setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
                         }}
-                    />
+                    /></div>
                     <div><RouletteNumbers/></div>
                     </div>
                 </div>
                 {result && <div className={styles.result}>Result: {result}</div>}
-                <div className={styles.currentBet}>
-                    <h2>Current Bet</h2>
-                    <p>Type: {bet.type}</p>
-                    <p>Value: {bet.value}</p>
-                </div>
             </div>
         </>
     );
