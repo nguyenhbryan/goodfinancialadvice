@@ -1,6 +1,7 @@
 "use client";
 
-import "./style.css";
+//import './style.css';
+import styles from "./page.module.css";
 import Image from "next/image";
 import cardBack from "../../../../public/cards/BACK.png";
 import { useState, useEffect } from "react";
@@ -261,7 +262,7 @@ export default function Blackjack() {
   };
 
   return (
-    <body style={{ color: "white"}}>
+    <div className={styles.container}>
       {/* Default text color for the body */}
       {!gameStarted && showStartGameButton && (
         <button onClick={handleStartGame}>Start Game</button>
@@ -277,7 +278,7 @@ export default function Blackjack() {
                   key={index}
                   src={`/cards/${card}.png`}
                   alt={`card ${index + 1}`}
-                  style={cardStyle}
+                  className={styles.cardStyle}
                 />
               ) : (
                 index === 0 ? (
@@ -287,7 +288,7 @@ export default function Blackjack() {
                     width={75}
                     height={100}
                     alt={`card ${index + 1}`}
-                    style={cardStyle}
+                    className={styles.cardStyle}
                   />
                 ) : (
                   <Image
@@ -296,7 +297,7 @@ export default function Blackjack() {
                     alt={`card ${index + 1}`}
                     width={75}
                     height={100}
-                    style={cardStyle}
+                    className={styles.cardStyle}
                   />
                 )
               )
@@ -313,7 +314,7 @@ export default function Blackjack() {
                 key={index}
                 src={`/cards/${card}.png`}
                 alt={`card ${index + 1}`}
-                style={cardStyle}
+                className={styles.cardStyle}
               />
             ))}
           </div>
@@ -331,7 +332,7 @@ export default function Blackjack() {
         <button onClick={newGame}>New Game</button>
       )}
 
-      <p id="results">{results}</p>
-    </body>
+      <p className={styles.results}>{results}</p>
+    </div>
   );
 }

@@ -1,16 +1,28 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './page.module.css';
 import RouletteNumbers from './rouletteNumbers';
 import dynamic from 'next/dynamic';
+import { useSession } from 'next-auth/react';
 
 const Wheel = dynamic(() => import('react-custom-roulette').then(mod => mod.Wheel), { ssr: false });
 
 export default function Roulette() {
-    
     const [mustSpin, setMustSpin] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState(0);
     const [result, setResult] = useState(null);
+    const [bet, setBet] = useState({ type: '', value: '' });
+    const { data: session } = useSession();
+    const [guess, setGuess] = useState(null);
+
+    const checkGuess = () => {
+        if (guess !== null && data[prizeNumber].option === guess) {
+            alert("Congratulations! Your guess is correct.");
+        } else {
+            alert("Sorry, your guess is incorrect.");
+        }
+    };
+
     const data = [
         { option: '0', style: { backgroundColor: 'green' } },
         { option: '32', style: { backgroundColor: 'red' } },
@@ -51,17 +63,20 @@ export default function Roulette() {
         { option: '26', style: { backgroundColor: 'black' } },
     ];
 
-
-    const [bet, setBet] = useState({ type: '', value: '' });
-
     const handleBetChange = (e) => {
-        const { name, value } = e.target;
-        setBet((prevBet) => ({ ...prevBet, [name]: value }));
+        if (e.target.value <= session?.user?.coins) {
+            const { name, value } = e.target;
+            setBet((prevBet) => ({ ...prevBet, [name]: value }));
+        }
+        else {
+            alert("You don't have enough coins for this bet.");
+        }
     };
 
     const handleSpinClick = () => {
         if (!mustSpin) {
             const newPrizeNumber = Math.floor(Math.random() * data.length);
+            
             setPrizeNumber(newPrizeNumber);
             setMustSpin(true);
             setResult(null);
@@ -73,6 +88,7 @@ export default function Roulette() {
             <div className={styles.container}>
                 <div className={styles.rouletteContainer}>
                     <div className={styles.betContainer}>
+                        <div>Coins: {session?.user?.coins}</div>
                         <div className={styles.amountText}>Total amount:</div>
                         <input
                             className={styles.input}
@@ -81,28 +97,32 @@ export default function Roulette() {
                             value={bet.value}
                             onChange={handleBetChange}
                             placeholder="0.00"
-                            />
+                        />
                         <button className={styles.playButton} onClick={handleSpinClick}>Play</button>
                     </div>
                     <div className={styles.wheelContainer}>
-                    <div className={styles.wheelSize}>
-                    <Wheel
-                        mustStartSpinning={mustSpin}
-                        prizeNumber={prizeNumber}
-                        data={data}
-                        outerBorderColor='white'
-                        textColors={['white']}
-                        innerRadius={50}
-                        innerBorderWidth={15}
-                        innerBorderColor='white'
-                        textDistance={80}
-                        radiusLineColor='#FFE140'
-                        onStopSpinning={() => {
-                            setMustSpin(false);
-                            setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
-                        }}
-                    /></div>
-                    <div><RouletteNumbers/></div>
+                        <div className={styles.wheelSize}>
+                            <Wheel
+                                mustStartSpinning={mustSpin}
+                                prizeNumber={prizeNumber}
+                                data={data}
+                                outerBorderColor='white'
+                                textColors={['white']}
+                                innerRadius={50}
+                                innerBorderWidth={15}
+                                innerBorderColor='white'
+                                textDistance={80}
+                                radiusLineColor='#FFE140'
+                                onStopSpinning={() => {
+                                    setMustSpin(false);
+                                    setResult(`${data[prizeNumber].option} : ${data[prizeNumber].style?.backgroundColor || 'red/black'}`);
+                                    checkGuess();
+                                    setGuess(null); // Reset guess after spinning
+                                    setBet({ type: '', value: '' }); // Reset bet after spinning
+                                }}
+                            />
+                        </div>
+                        <div><RouletteNumbers numberClicked={(number) => setGuess(number)} /></div>
                     </div>
                 </div>
                 {result && <div className={styles.result}>Result: {result}</div>}

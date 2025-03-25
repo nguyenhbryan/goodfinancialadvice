@@ -85,7 +85,7 @@
     font-family: "Arial Black", Arial, sans-serif;
     font-weight: bold;
     color: #fff;
-    text-align: start;
+    text-align: flex-start;
     margin-top: 16px;
 }
 
@@ -93,6 +93,6 @@
     font-family: "Arial Black", Arial, sans-serif;
     font-weight: bold;
     color: #fff;
-    text-align: start;
+    text-align: flex-start;
     margin-top: 16px;
 }

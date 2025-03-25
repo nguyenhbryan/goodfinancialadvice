@@ -19,11 +19,11 @@
     
 }
 
-.numberContainer > button:nth-child(2n) {
+.numberContainer > button:nth-child(2n+1) {
     background-color: #4b4544;
 }
 
-.numberContainer .zero {
+.numberContainer button.zero {
     grid-row: 1 / span 3; /* Span all three rows */
     grid-column: 1; /* Place in the first column */
     height: 100%;
@@ -34,4 +34,16 @@
 .numberContainer > button:hover {
     opacity: 0.7;
     transition: 0.3s ease;
+}
+
+.numberContainer button.toggled {
+    background-color: yellow;
+    color: black;
+}
+
+.red {
+    background-color: red;
+}
+.black {
+    background-color: black;
 }

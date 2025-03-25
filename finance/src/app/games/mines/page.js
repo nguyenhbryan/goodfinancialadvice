@@ -18,8 +18,8 @@ export default function Mines() {
 
     const calculateProbability = useCallback((safeClicks) => {
         const safeTiles = TOTAL_TILES - parseInt(bombCount);
-        const totalTiles = TOTAL_TILES - safeClicks;
-        const probability = safeTiles / totalTiles;
+        const totalTiles = TOTAL_TILES;
+        const probability = (safeTiles + 2) / totalTiles;
         return probability;
     }, [bombCount]);
 

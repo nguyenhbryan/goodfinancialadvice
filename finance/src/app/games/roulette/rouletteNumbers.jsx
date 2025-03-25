@@ -1,46 +1,45 @@
 import styles from "./RouletteNumbers.module.css";
+import { useState } from "react";
 
-export default function RouletteNumbers() {
+export default function RouletteNumbers({ numberClicked }) {
+    const [clickedNumbers, setClickedNumbers] = useState({}); // Use an object to store clicked state for each number
+
+    const handleNumberClick = (number) => {
+        console.log(`Number clicked: ${number}`);
+        // Toggle the clicked state for the specific number
+        setClickedNumbers(prevState => {
+            const newState = {
+                ...prevState,
+                [number]: !prevState[number] // Toggle the boolean value for the number
+            };
+            // Pass the array of clicked numbers to the parent function
+            numberClicked(Object.keys(newState).filter(key => newState[key]).map(Number));
+            return newState;
+        });
+    };
+
     return (
         <>
             <div className={styles.numberContainer}>
-                <button className={styles.zero}>0</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>11</button>
-                <button>12</button>
-                <button>13</button>
-                <button>14</button>
-                <button>15</button>
-                <button>16</button>
-                <button>17</button>
-                <button>18</button>
-                <button>19</button>
-                <button>20</button>
-                <button>21</button>
-                <button>22</button>
-                <button>23</button>
-                <button>24</button>
-                <button>25</button>
-                <button>26</button>
-                <button>27</button>
-                <button>28</button>
-                <button>29</button>
-                <button>30</button>
-                <button>31</button>
-                <button>32</button>
-                <button>33</button>
-                <button>34</button>
-                <button>35</button>
-                <button>36</button>
+                <button
+                    className={`${styles.zero} ${clickedNumbers[0] ? styles.toggled : ""}`} // Add toggled class if 0 is clicked
+                    onClick={() => handleNumberClick(0)}
+                >
+                    0
+                </button>
+                {[...Array(36).keys()].map((num) => {
+                    const number = num + 1;
+                    return (
+                        <button
+                            key={number}
+                            onClick={() => handleNumberClick(number)}
+                            className={`${clickedNumbers[number] ? styles.toggled : ""}`} // Add toggled class based on number's click state
+                        >
+                            {number}
+                        </button>
+                    );
+                })}
             </div>
-        </>);
+        </>
+    );
 }
