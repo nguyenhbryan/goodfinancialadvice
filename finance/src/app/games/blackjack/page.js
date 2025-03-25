@@ -110,7 +110,8 @@ export default function Blackjack() {
       setPlayerBusted(true);
       setResults("You Bust! Dealer Wins!");
       setRevealAllDealerCards(true);
-      setDealerSum(getValue(shownCard) + getValue(hiddenCard));
+      let hiddenCardValue = getValue(hiddenCard);
+      setDealerSum(getValue(shownCard) + hiddenCardValue);
       setShowNewGameButton(true); // Show new game button after round is over
       setPlayerWon(false); // Player lost
     }
@@ -164,7 +165,8 @@ export default function Blackjack() {
       setPlayerBusted(true);
       setResults("You Bust! Dealer Wins!");
       setRevealAllDealerCards(true);
-      setDealerSum(getValue(shownDealerCard) + getValue(hidden));
+      let hiddenCardValue = getValue(hidden);
+      setDealerSum(getValue(shownDealerCard) + hiddenCardValue);
       setShowNewGameButton(true); // Show new game button after round is over
       setPlayerWon(false); // Player lost
     }
@@ -199,12 +201,13 @@ export default function Blackjack() {
 
       finalDealerSum += cardValue;
       finalDealerAceCount += cardAce;
+      finalDealerSum = reduceAce(finalDealerSum, finalDealerAceCount);
 
-        finalDealerSum = reduceAce(finalDealerSum, finalDealerAceCount);
 
+      if (finalDealerSum > 21) {
+        break;
+      }
     }
-
-
 
     setDealerCards(revealedDealerCards);
     setDealerSum(finalDealerSum);
