@@ -20,7 +20,7 @@ const UserSchema = new Schema({
   },
   coins: {
     type: Number,
-    default: 0
+    default: 100
   }
 }, {
   timestamps: true,
