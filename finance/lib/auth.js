@@ -53,6 +53,7 @@ export const authOptions = {
         token.id = user.id;
         token.name = user.name;
         token.coins = user.coins;
+        token.session = user.session;
       }
       if (account) {
         token.accessToken = account.access_token;
