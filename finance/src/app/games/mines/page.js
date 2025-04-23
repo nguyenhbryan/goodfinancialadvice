@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import styles from "./page.module.css"; // Assuming styles will be used later
 import Link from "next/link"; // Assuming Link will be used later
 import GameBoard from "./gameboard"; // Assuming GameBoard is in the same directory
+import { useSession } from "next-auth/react";
 
 const TOTAL_TILES = 24;
 const MIN_BET = 0.01;
@@ -14,36 +15,40 @@ export default function Mines() {
     const [gameOver, setGameOver] = useState(false);
     const [isGameStarted, setIsGameStarted] = useState(false);
     const [clickCount, setClickCount] = useState(0);
-    const [gameState, setGameState] = useState(Array(TOTAL_TILES).fill("hidden"));
+    const { data: session, status } = useSession();
+    const [coins, setCoins] = useState(0);
+    const [cashedOut, setCashedOut] = useState(false);
 
-    const calculateProbability = useCallback((safeClicks) => {
-        const safeTiles = TOTAL_TILES - parseInt(bombCount);
-        const totalTiles = TOTAL_TILES;
-        const probability = (safeTiles + 2) / totalTiles;
-        return probability;
-    }, [bombCount]);
-
-    const calculatePayout = useCallback((safeClicks) => {
-        let payout = parseFloat(betAmount);
-        for (let i = 0; i < safeClicks; i++) {
-            payout /= calculateProbability(i);
-        };
-        return payout;
-    }, [betAmount, calculateProbability]);
-
-    const handleSafeClick = useCallback((newClickCount) => {
-        setClickCount(newClickCount);
-        const newWinings = calculatePayout(newClickCount);
-        setCurrentWinnings(newWinings);
-    }, [calculatePayout]);
 
     const handleGameOver = useCallback((isHomeRun) => {
         setGameOver(true);
         if (!isHomeRun) {
+
             setCurrentWinnings(0);
         }
         setIsGameStarted(false);
     }, []);
+    const createGame = async () => {
+
+        try {
+            const response = await fetch("/api/mines", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${session?.accessToken}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id: 0, name: "Mines", bombNumber: parseInt(bombCount), totalTiles: TOTAL_TILES, betAmt: parseFloat(betAmount) }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to create game");
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     const handleStartGame = useCallback(() => {
         const bombCountNum = parseInt(bombCount);
@@ -66,18 +71,12 @@ export default function Mines() {
         setIsGameStarted(true);
         setGameOver(false);
         setCurrentWinnings(0);
-        setClickCount(0);
+        
+        createGame();
         // Reset the game board state to avoid initial gap
-        setGameState(Array(TOTAL_TILES).fill("hidden"));
     }, [bombCount, betAmount]);
 
-    const handleCashout = () => {
-        if (currentWinnings > parseFloat(betAmount)) {
-            setGameOver(true);
-            setIsGameStarted(false);
-            alert(`You cashed out with a payout of ${currentWinnings.toFixed(2)}`);
-        };
-    }
+
 
     const handleBombCountChange = (event) => {
         setBombCount(event.target.value);
@@ -86,6 +85,19 @@ export default function Mines() {
     const handleBetAmountChange = (event) => {
         setBetAmount(event.target.value);
     };
+
+    useEffect(() => {
+        if (isGameStarted || gameOver) {
+            fetch(`/api/users/${session?.user?.id}`)
+                .then((res) => res.json())
+                .then((data) => setCoins(data.coins));
+        }
+    }, [isGameStarted, gameOver, session?.user?.id]);
+
+    useEffect(() => {
+        fetch(`/api/users/${session?.user?.id}`).then((res) => res.json()).then((data) => setCoins(data.coins));
+    }, []);
+
 
     return (
         <div className={styles.container}>
@@ -98,6 +110,7 @@ export default function Mines() {
                                 <label htmlFor="betAmount" className={styles.label}>
                                     Bet Amount (min: {MIN_BET}):
                                 </label>
+                                <p>coins: {coins}</p>
                             </div>
                             <div>
                                 <input
@@ -108,7 +121,7 @@ export default function Mines() {
                                     className={styles.input}
                                     min={MIN_BET}
                                     step="0.01"
-                                    disabled={isGameStarted}
+                                    disabled={isGameStarted} // Disable input if game is started and user is authenticated
                                 />
                             </div>
                             <div>
@@ -132,14 +145,14 @@ export default function Mines() {
                         <button
                             onClick={handleStartGame}
                             className={`${styles.button} ${styles.startButton}`}
-                            disabled={isGameStarted}
+                            disabled={isGameStarted || status !== "authenticated"}
                         >
                             {isGameStarted ? "Game In Progress" : "Play"}
                         </button>
                         <button
-                            onClick={handleCashout}
+                            onClick={() => setCashedOut(true)}
                             className={`${styles.button} ${styles.cashoutButton}`}
-                            disabled={!isGameStarted || currentWinnings <= parseFloat(betAmount)}
+                            //disabled={!isGameStarted || currentWinnings <= parseFloat(betAmount) || status.status !== "authenticated"}
                         >
                             Cash Out
                         </button>
@@ -149,11 +162,10 @@ export default function Mines() {
                     <div className={styles.game}>
                         <GameBoard
                             bombCount={parseInt(bombCount)}
-                            onSafeClick={handleSafeClick}
                             onGameOver={handleGameOver}
                             isGameStarted={isGameStarted}
-                            currentWinnings={currentWinnings} // Pass currentWinnings as a prop
                             gameOver={gameOver} // Pass gameOver as a prop
+                            onCashout={cashedOut}
                         />
                     </div>
                 </div>

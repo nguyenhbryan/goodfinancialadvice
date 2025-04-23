@@ -1,58 +1,101 @@
 import { useState, useEffect } from "react";
 import styles from "./gameboard.module.css"; // Assuming styles will be used later
+import { useSession } from "next-auth/react";
 
-export default function GameBoard({ bombCount, onSafeClick, onGameOver, isGameStarted, currentWinnings, gameOver }) {
+
+export default function GameBoard({ onSafeClick, onGameOver, isGameStarted, gameOver, onCashout }) {
   const [gameState, setGameState] = useState(Array(24).fill("hidden"));
-  const [bombPositions, setBombPositions] = useState(new Set());
-  const [clickCount, setClickCount] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const { data: session } = useSession();
+
+
+  const [currentMultiplier, setCurrentMultiplier] = useState(1);
+  const [currentWinnings, setCurrentWinnings] = useState(0);
+
+  const cashOut = async () => {
+    try {
+      const response = await fetch("/api/mines", {
+        method: "PATCH",
+        headers: {
+          "Authorization": `Bearer ${session?.accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ endGame: true }),
+      }
+
+      );
+      if (!response.ok) {
+        throw new Error("Failed to cash out");
+      }
+
+      const data = await response.json();
+      const newGameState = [...gameState];
+      const bombPositions = data.bombPositions || []; 
+      const winnings = data.winnings || 0;
+      setCurrentWinnings(winnings.toFixed(2));
+      bombPositions.forEach((pos) => {
+        newGameState[pos] = "bomb";
+      });
+      setGameState(newGameState);
+      onGameOver(true);
+      setIsGameOver(true);
+
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     if (isGameStarted) {
-      initializeGame();
+      setGameState(Array(24).fill("hidden"));
     }
-  }, [isGameStarted, bombCount]);
-
-  const initializeGame = () => {
-    const newGameState = Array(24).fill("hidden");
-    const newBombPositions = new Set();
-    while (newBombPositions.size < bombCount) {
-      newBombPositions.add(Math.floor(Math.random() * 24));
-    }
-    setGameState(newGameState);
-    setBombPositions(newBombPositions);
-    setClickCount(0);
-  };
-
-  const handleCircleClick = (index) => {
-    if (gameState[index] !== "hidden" || !isGameStarted) return;
-
-    const newGameState = [...gameState];
-    if (bombPositions.has(index)) {
-      newGameState[index] = "bomb";
-      setGameState(newGameState);
-      onGameOver(false);
-    } else {
-      newGameState[index] = "gem";
-      setGameState(newGameState);
-      const newClickCount = clickCount + 1;
-      setClickCount(newClickCount);
-      onSafeClick(newClickCount);
-
-      if (newClickCount === 24 - bombCount) {
-        onGameOver(true);
-      }
-    }
-  };
+  }, [isGameStarted]);
 
   useEffect(() => {
-    if (!isGameStarted) {
-      const finalGameState = [...gameState];
-      bombPositions.forEach((pos) => {
-        finalGameState[pos] = "bomb";
-      });
-      setGameState(finalGameState);
+    if (onCashout) {
+      cashOut();
     }
-  }, [isGameStarted, bombPositions]);
+  }, [onCashout]);
+
+  const handleCircleClick = async (index) => {
+    if (gameState[index] !== "hidden" || isGameOver) return;
+
+    try {
+      const response = await fetch("/api/mines", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ index }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to validate tile");
+      }
+
+      const data = await response.json();
+      const newGameState = [...gameState];
+      const bombPositions = data.bombPositions || []; // Ensure bombPositions is defined
+
+      if (data.hit === "bomb") {
+        bombPositions.forEach((pos) => {
+          newGameState[pos] = "bomb";
+        });
+        setGameState(newGameState);
+        setCurrentMultiplier(0);
+        onGameOver(true);
+      } else {
+        newGameState[index] = "gem";
+        setGameState(newGameState);
+
+        setCurrentMultiplier(data.multi.toFixed(2));
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -69,7 +112,7 @@ export default function GameBoard({ bombCount, onSafeClick, onGameOver, isGameSt
         ))}
       </div>
       <div className={styles.gameInfo}>
-        <div>Current Winnings: ${currentWinnings.toFixed(2)}</div>
+        <div>Current Multiplier: {currentMultiplier}x</div>
         {gameOver && currentWinnings === 0 && (
           <div className={styles.gameOver}>
             Game Over! You lost your bet.
@@ -77,7 +120,7 @@ export default function GameBoard({ bombCount, onSafeClick, onGameOver, isGameSt
         )}
         {gameOver && currentWinnings > 0 && (
           <div className={styles.gameOver}>
-            Game Over! You cashed out with ${currentWinnings.toFixed(2)}.
+            Game Over! You cashed out with ${currentWinnings}.
           </div>
         )}
       </div>

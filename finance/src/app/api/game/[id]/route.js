@@ -1,0 +1,1 @@
+import gameHandlers from '@/lib/gameHandlers.js';

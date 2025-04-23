@@ -11,8 +11,6 @@ export async function GET() {
     if (!session) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    console.log("Session data:", session);
-    
     const user = await User.findById(session?.user?.id).select("coins");
     return NextResponse.json({coins: user.coins ?? 0});
 }
