@@ -57,6 +57,7 @@ export default function Sidebar() {
     return (
         <div className={styles.container}>
             <nav className={`${styles.sidebar} ${isSidebarOpen ? styles.closed : ""}`}>
+                <div>
                 <ul className={styles.list}>
                     <li className={styles.first}>
                         <span className={`${styles.logo} ${isSidebarOpen ? styles.hidden : ""}`}>
@@ -103,7 +104,10 @@ export default function Sidebar() {
                         </ul>
                     </li>
                 </ul>
+                </div>
+                <div className={styles.end}>
                 {showProfileOrLogin()}
+                </div>
             </nav>
         </div>
     );
