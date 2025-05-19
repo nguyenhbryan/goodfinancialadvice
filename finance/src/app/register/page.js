@@ -7,41 +7,12 @@ import { useRouter } from "next/navigation";
 import { register } from "@/actions/register";
 import styles from "./page.module.css";
 export default function Register() {
-    const [emailError, setEmailError] = React.useState(false);
-    const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-    const [passwordError, setPasswordError] = React.useState(false);
-    const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-    const [nameError, setNameError] = React.useState(false);
-    const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+
     const router = useRouter();
     const ref = useRef(null);
-    const [error, setError] = useState();
 
-    // Frontend validation function
-    const validateForm = (formData) => {
-        const name = formData.get("name");
-        const email = formData.get("email");
-        const password = formData.get("password");
-        let errorMessages = [];
-
-        // Basic validation checks
-        if (!name || name.trim() === "") {
-            errorMessages.push("Name is required.");
-        }
-        if (!email || !/\S+@\S+\.\S+/.test(email)) {
-            errorMessages.push("Please enter a valid email address.");
-        }
-        if (!password || password.length < 6) {
-            errorMessages.push("Password must be at least 6 characters long.");
-        }
-
-        if (errorMessages.length > 0) {
-            setFormError(errorMessages);
-            return false;
-        }
-        return true;
-    };
-
+    
+    
     const handleSubmit = async (formData) => {
         const r = await register({
             email: formData.get("email"),

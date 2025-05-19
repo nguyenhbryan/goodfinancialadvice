@@ -24,14 +24,12 @@
 
 .welcome_container {
     display: flex;
-    position: relative;
     justify-content: center; /* Change this line */
     align-items: center;
     padding: 10px;
     margin-bottom: 7.5rem;
     margin-top: 7.5rem;
     width: 100%;
-    min-width: 0;
 }
 
 .welcome_header {
@@ -42,28 +40,20 @@
     text-align: center;
     margin-bottom: 1em;
     font-size: 1.5em;
+
+    @media (max-width: 768px) {
+        font-size: 1.2em;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 1em;
+    }
     font-weight: 600;
     margin-left: 1em;
     
 }
 
-.welcome_left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 0;
-    flex: 1;
-    padding-left: 3em;
-}
 
-.welcome_right {
-    display: flex;
-    justify-content: center; /* Change this line */
-    align-items: center; /* Change this line */
-    width: 65%;
-    min-width: 0;
-}
 
 .logo_image {
     display: flex;
@@ -73,6 +63,8 @@
     max-width: 100%;
     height: auto;
     object-fit: contain;
+    border: none;
+    border-radius: 35px;
 }
 
 .information_container {

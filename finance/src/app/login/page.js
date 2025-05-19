@@ -45,8 +45,7 @@ export default function Login() {
 
 
   return (
-    <div className={styles.body}>
-      <section className={styles.section}>
+      <div className={styles.body}>
         <div className={styles.container}>
           <h1 className={styles.title}>Sign in</h1>
 
@@ -107,7 +106,6 @@ export default function Login() {
           </p>
 
         </div>
-      </section>
-    </div>
+        </div>
   );
 };
