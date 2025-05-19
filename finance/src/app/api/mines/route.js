@@ -6,23 +6,27 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { updateCoins } from "@/actions/updateCoins";
 import { calculateMultiplier } from "@/lib/games/mines/handlers";
+import User from "@/models/User";
 
 export async function POST(req) {
     try {
-        // Check if the user is authenticated
         const session = await getServerSession();
-        console.log("Session:", session);
+        
+
         if (!session) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
+        await connectDB();
+        const user = await User.findOne({ name: session.user.name });
         const body = await req.json();
-        if (session.user.coins < body.betAmt) {
+        if (user.coins < body.betAmt) {
             return NextResponse.json({ error: "Insufficient coins" }, { status: 400 });
         }
-        await connectDB();
+        else {
+            updateCoins(session.user.name, -body.betAmt);
+        }
 
-
-        updateCoins(session.user.name, -body.betAmt);
+        
         if (!body.name) {
             return NextResponse.json({ error: "Game name is required" }, { status: 400 });
         }
@@ -75,7 +79,9 @@ export async function PATCH(req) {
             // Update the game state to game over
             currentGame.gameOver = true;
             await currentGame.save();
-            return NextResponse.json({bombPositions: currentGame.bombPositions, winnings: currentGame.winnings},{ status: 200  });
+            updateCoins(session.user.name, currentGame.winnings);
+            const finalgame = currentGame;
+            return NextResponse.json({bombPositions: finalgame.bombPositions, winnings: finalgame.winnings},{ status: 200  });
         }
 
         // Check if the clicked index is a bomb

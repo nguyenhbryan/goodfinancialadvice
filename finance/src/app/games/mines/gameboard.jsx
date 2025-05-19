@@ -27,7 +27,7 @@ export default function GameBoard({ onSafeClick, onGameOver, isGameStarted, game
       if (!response.ok) {
         throw new Error("Failed to cash out");
       }
-
+      console.log("Cashed out successfully");
       const data = await response.json();
       const newGameState = [...gameState];
       const bombPositions = data.bombPositions || []; 
@@ -40,6 +40,8 @@ export default function GameBoard({ onSafeClick, onGameOver, isGameStarted, game
       onGameOver(true);
       setIsGameOver(true);
 
+      //isGameStarted(false);
+
     }
     catch (error) {
       console.error(error);
@@ -49,6 +51,10 @@ export default function GameBoard({ onSafeClick, onGameOver, isGameStarted, game
   useEffect(() => {
     if (isGameStarted) {
       setGameState(Array(24).fill("hidden"));
+      setIsGameOver(false);
+      setCurrentMultiplier(1);
+      setCurrentWinnings(0); 
+      
     }
   }, [isGameStarted]);
 
@@ -84,6 +90,7 @@ export default function GameBoard({ onSafeClick, onGameOver, isGameStarted, game
         });
         setGameState(newGameState);
         setCurrentMultiplier(0);
+        setIsGameOver(true);
         onGameOver(true);
       } else {
         newGameState[index] = "gem";

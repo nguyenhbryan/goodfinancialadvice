@@ -14,10 +14,28 @@ export default function Mines() {
     const [currentWinnings, setCurrentWinnings] = useState(0);
     const [gameOver, setGameOver] = useState(false);
     const [isGameStarted, setIsGameStarted] = useState(false);
-    const [clickCount, setClickCount] = useState(0);
     const { data: session, status } = useSession();
     const [coins, setCoins] = useState(0);
     const [cashedOut, setCashedOut] = useState(false);
+
+
+    const loginOverlay = () => {
+        if (status === "unauthenticated") {
+            console.log("User is not authenticated");
+            return (
+                <div className={styles.loginOverlay}>
+                    <div className={styles.loginOverlayContent}>
+                        <h2 className={styles.loginOverlayTitle}>Login to Play</h2>
+                        <p className={styles.loginOverlayText}>Please login to play the game.</p>
+                        <Link href="/login" className={styles.loginOverlayButton}>
+                            Login
+                        </Link>
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    };
 
 
     const handleGameOver = useCallback((isHomeRun) => {
@@ -47,6 +65,9 @@ export default function Mines() {
         } catch (error) {
             console.error(error);
         }
+        setIsGameStarted(true);
+        setCashedOut(false);
+        setGameOver(false);
     };
 
 
@@ -67,10 +88,6 @@ export default function Mines() {
             alert("Invalid bet amount. Please enter a positive number.");
             return;
         }
-
-        setIsGameStarted(true);
-        setGameOver(false);
-        setCurrentWinnings(0);
         
         createGame();
         // Reset the game board state to avoid initial gap
@@ -101,6 +118,7 @@ export default function Mines() {
 
     return (
         <div className={styles.container}>
+            {loginOverlay()}
             <div className={styles.top}>
                 <div className={styles.sidebar}>
                     <h2 className={styles.settings}>Game Settings</h2>
@@ -150,7 +168,10 @@ export default function Mines() {
                             {isGameStarted ? "Game In Progress" : "Play"}
                         </button>
                         <button
-                            onClick={() => setCashedOut(true)}
+                            onClick={() => {
+                                setCashedOut(true);
+                                setIsGameStarted(false);
+                            }}
                             className={`${styles.button} ${styles.cashoutButton}`}
                             //disabled={!isGameStarted || currentWinnings <= parseFloat(betAmount) || status.status !== "authenticated"}
                         >
