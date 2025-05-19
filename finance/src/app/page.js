@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <div className={styles.body}>
       <div className={styles.welcome_container}>
-        <div className={styles.welcome_left}>
+  
           <div className={styles.hidden}>
             <div className={styles.welcome_header}>
               <h1>Welcome to Coin Craze</h1>
@@ -62,11 +62,11 @@ export default function Home() {
               </span>
             </div>
           </div>
-        </div>
-        <div className={styles.welcome_right}>
+
+        
           <div className={styles.hidden}>
             <img className={styles.logo_image} src="coincraze.png"></img>
-          </div>
+  
         </div>
       </div>
       <div className={styles.information_container}>
@@ -138,7 +138,7 @@ export default function Home() {
             <Cards name="Dice" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
           </div>
           <div className={styles.cards_hidden}>
-            <Cards name="Mines" image="" href="games/mines" />
+            <Cards name="Mines" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" href="games/mines" />
           </div>
           <div className={styles.cards_hidden}>
             <Cards name="Keno" image="https://static-00.iconduck.com/assets.00/placeholder-icon-2048x2048-48kucnce.png" />
