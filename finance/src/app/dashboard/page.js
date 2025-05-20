@@ -1,10 +1,21 @@
 'use client';
 import React from 'react';
 import { useSession } from 'next-auth/react';
+import { useState } from 'react';
 import styles from './page.module.css';
+import { useEffect } from 'react';
 
 export default function Dashboard() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
+    const [gamesPlayed, setGamesPlayed] = useState(0);
+    const [coins, setCoins] = useState(0);
+    console.log("Session data:", session);
+    useEffect(() => {
+            fetch(`/api/users/${session?.user?.id}`).then((res) => res.json()).then((data) => {setGamesPlayed(data.gamesPlayed)
+            setCoins(data.coins);
+            });
+
+        }, []);
 
     return (
         <div className={styles.body}>
@@ -14,14 +25,14 @@ export default function Dashboard() {
                     <div className={styles.avatar}>
                         <h1 className={styles.hello}>Hello,</h1>
                         <span className={styles.name}>
-                            {session ? `${session.user.name}` : "Guest"}
+                            {status === "authenticated" ? `${session?.user?.name}` : "Guest"}
                         </span>
                         <hr className={styles.separator}></hr>
                     </div>
                     <div className={styles.profile}>
                         <h1 className={styles.subtitle}>Account overview</h1>
                         <p>Here's a summary of your finances.</p>
-                        <p>Current Balance: {session?.user?.coins}</p>
+                        <p>Current Balance: {coins.toFixed(2)   }</p>
                     </div>
                 </div>
                 <div className={styles.right_container}>
@@ -35,7 +46,7 @@ export default function Dashboard() {
                     <div className={styles.stats}>
                         <h1 className={styles.subtitle}>Stats</h1>
                         <p>Here's some stats to keep you updated.</p>
-                        <p>Number of Wagered Games Played: {session?.user?.played}</p>
+                        <p>Number of Wagered Games Played: {gamesPlayed}</p>
                     </div>
                 </div>
             </div>
