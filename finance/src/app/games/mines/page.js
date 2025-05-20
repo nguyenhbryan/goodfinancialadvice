@@ -107,12 +107,12 @@ export default function Mines() {
         if (isGameStarted || gameOver) {
             fetch(`/api/users/${session?.user?.id}`)
                 .then((res) => res.json())
-                .then((data) => setCoins(data.coins));
+                .then((data) => setCoins(data.coins.toFixed(2)));
         }
     }, [isGameStarted, gameOver, session?.user?.id]);
 
     useEffect(() => {
-        fetch(`/api/users/${session?.user?.id}`).then((res) => res.json()).then((data) => setCoins(data.coins));
+        fetch(`/api/users/${session?.user?.id}`).then((res) => res.json()).then((data) => setCoins(data.coins.toFixed(2)));
     }, []);
 
 
