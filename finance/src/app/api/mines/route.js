@@ -45,13 +45,12 @@ export async function POST(req) {
         const game = new Game({ 
             id: uuidv4(), 
             name: body.name, 
-            player: session.user.id, 
+            player: user.id,
             bombPositions: bombs,
             totalTiles: body.totalTiles,
             betAmount: body.betAmt,
         });
         await game.save();
-
 
         return NextResponse.json({ status: 201 });
     } catch (e) {
@@ -68,9 +67,9 @@ export async function PATCH(req) {
         }
         const body = await req.json();
         await connectDB();
-
         // Fetch the current game
-        const currentGame = await Game.findOne({player: session.user.id}).sort({ createdAt: -1 });
+        const user = await User.findOne({ name: session.user.name });
+        const currentGame = await Game.findOne({player: user.id}).sort({ createdAt: -1 });
         if (!currentGame) {
             return NextResponse.json({ error: "No game found" }, { status: 404 });
         }
